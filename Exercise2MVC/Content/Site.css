@@ -1,0 +1,134 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+}
+
+.navbar-inverse {
+    background-color: #000000;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #ffffff;
+    }
+
+        .navbar-inverse .navbar-brand:hover {
+            color: #864AF9;
+        }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #ffffff;
+    }
+
+    .navbar-inverse .navbar-toggle:hover,
+    .navbar-inverse .navbar-toggle:focus {
+        background-color: #777;
+        border-color: #fff
+    }
+
+.sub-header {
+    height: 10px;
+    background-color: #3B3486;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #3B3486;
+    color: #fff;
+}
+
+.btn, .btn-primary {
+    background-color: #3B3486;
+    color: #fff;
+    border: none;
+}
+
+.btn:hover, .btn-primary:hover {
+    background-color: #864AF9;
+    color: #fff;
+}
+
+.btn:focus, .btn-primary:focus {
+    background-color: #864AF9;
+    color: #fff;
+}
+
+.btn:, .btn-primary:focus {
+    background-color: #864AF9;
+    color: #fff;
+}
+
+.modal-header {
+    background-color: #3B3486;
+    color: #fff;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    border-bottom: solid 1px #b7b7b7;
+}
+
+.breadcrumb > li > a {
+    font-weight: bolder;
+}
+
+/* Media Query */
+@media screen and (max-width: 767px) {
+    .table-responsive {
+        border: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .dl-horizontal dt {
+        float: left;
+        clear: left;
+        width: 160px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

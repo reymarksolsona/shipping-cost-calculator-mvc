@@ -1,0 +1,57 @@
+﻿@model Exercise2MVC.Models.Entities.Parcel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<ul class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Customer")">
+            Customers
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Parcel", new { customerId = Model.CustomerID })">
+            Parcels
+        </a>
+    </li>
+    <li class="active">Update Parcel Info</li>
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            @using (Html.BeginForm())
+            {
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Parcel</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        @Html.ValidationSummary(true)
+                        <input type="hidden" name="CustomerID" value="@Model.CustomerID" />
+                        <input type="hidden" name="ParcelID" value="@Model.ParcelID" />
+                        <div class="form-group text-left">
+                            <label for="Title"><span class="text-danger">*</span> Title:</label>
+                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Title, null, new { @class = "text-danger mt-3" })
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" value="Create" class="btn btn-default">
+                                    <i class="fa fa-save"></i> Save
+                                </button>
+                                <a href="@Url.Action("Index", "Parcel", new { customerId = Model.CustomerID })" class="btn btn-default">
+                                    <i class="fa fa-minus-circle"></i> Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

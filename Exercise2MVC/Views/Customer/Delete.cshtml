@@ -1,0 +1,51 @@
+﻿@model Exercise2MVC.Models.Entities.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<ul class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Customer")">
+            Customers
+        </a>
+    </li>
+    <li class="active">Delete Customer</li>
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Customer</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Are you sure you want to delete this customer?</p>
+                    <dl class="dl-horizontal">
+                        <dt>Name:</dt>
+                        <dd>@Model.Name</dd>
+
+                        <dt>Phone Number:</dt>
+                        <dd>@Model.PhoneNumber</dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm("DeleteConfirmed", "Customer", new { id = Model.CustomerID }, FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                                <a href="@Url.Action("Index", "Customer")" class="btn btn-default">
+                                    <i class="fa fa-minus-circle"></i> Cancel
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

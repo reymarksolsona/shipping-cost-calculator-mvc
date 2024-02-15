@@ -1,0 +1,101 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Exercise2MVC.Helpers
+@model IPagedList<Exercise2MVC.Models.Entities.ParcelItem>
+
+@{
+    ViewBag.Title = "Parcel Items";
+}
+
+<ul class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Customer")">
+            Customers
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Parcel", new {customerId = TempData["customerId"] })">
+            Parcels
+        </a>
+    </li>
+    <li class="active">Parcel Items</li>
+</ul>
+
+<div class="row" id="parcel-list">
+    <div class="container">
+        <h2 class="text-center">Parcel Items</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> @TempData["ErrorMessage"]
+            </div>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <!-- Create Button -->
+        <div class="text-right">
+            <a href="@Url.Action("Create", "ParcelItem", new { parcelId = TempData["parcelId"]})" class="btn btn-default">
+                <i class="fa fa-plus-circle"></i> Add Parcel Item
+            </a>
+        </div>
+
+        <div class="table-responsive mb-5">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Delivery Classification</th>
+                        <th>Weight</th>
+                        <th>Cost</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var parcelItem in Model)
+                    {
+
+                    var deliveryInfo = ParcelCalculator.CalculateClassificationAndCost(parcelItem.Weight);
+
+                    <tr>
+                        <td>@parcelItem.Title</td>
+                        <td>@deliveryInfo.Classification</td>
+                        <td>@parcelItem.Weight</td>
+                        <td>@string.Format("${0:N2}", deliveryInfo.Cost)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "ParcelItem", new { id = parcelItem.ParcelItemID } )">
+                                <i class="fa fa-user text-success"></i> Edit
+                            </a> |
+                            <a href="@Url.Action("Delete", "ParcelItem", new { id = parcelItem.ParcelItemID } )">
+                                <i class="fa fa-trash text-danger"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="text-center">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { parcelId = TempData["parcelId"], page }), new PagedListRenderOptions { Display = PagedListDisplayMode.Always, MaximumPageNumbersToDisplay = 5 })
+            </div>
+        }
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="text-center">
+                <span>No Data Found.</span>
+            </div>
+        }
+    </div>
+</div>

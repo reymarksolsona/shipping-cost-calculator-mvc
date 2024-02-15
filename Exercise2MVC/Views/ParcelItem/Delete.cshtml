@@ -1,0 +1,58 @@
+﻿@model Exercise2MVC.Models.Entities.ParcelItem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<ul class="breadcrumb">
+    <li>
+        <a href="@Url.Action("Index", "Customer")">
+            Customers
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Parcel", new { customerId = Model.Parcel.CustomerID })">
+            Parcels
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "ParcelItem", new { parcelId = Model.ParcelID })">
+            Parcel Items
+        </a>
+    </li>
+    <li class="active">Delete Parcel Item</li>
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Parcel</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Are you sure you want to delete this parcel?</p>
+                    <dl class="dl-horizontal">
+                        <dt>Title:</dt>
+                        <dd>@Model.Title</dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm("DeleteConfirmed", "ParcelItem", new { id = Model.ParcelItemID }, FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                                <a href="@Url.Action("Index", "ParcelItem", new { parcelId = Model.ParcelID })" class="btn btn-default">
+                                    <i class="fa fa-minus-circle"></i> Cancel
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
